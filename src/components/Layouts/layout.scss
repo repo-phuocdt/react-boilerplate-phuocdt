@@ -1,0 +1,25 @@
+.layout-main {
+  &__logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+  }
+}
+
+.layout-content {
+  &__content {
+    background: #fff;
+    margin: 24px 16px;
+    padding: 24px;
+    min-height: calc(100vh - 48px) !important;
+  }
+}
+
+.ant-menu {
+  .ant-menu-item-not-selected {
+    background-color: #001529 !important;
+    span > a {
+      color: rgba(255, 255, 255, 0.65) !important;
+    }
+  }
+}
