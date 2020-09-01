@@ -1,25 +1,17 @@
-import LayoutMain from 'components/Layouts';
 import Loading from 'components/Loading';
-import NotFound from 'components/NotFound';
+import RenderRoute from 'configs/renderRoute';
 import React, { Suspense } from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { map } from 'lodash';
-import { dsMenu } from 'configs/config-menu';
+import { BrowserRouter } from 'react-router-dom';
+import './app.scss';
 
 function App() {
   return (
     <BrowserRouter>
-      <LayoutMain>
+      <div className="container-app">
         <Suspense fallback={<Loading />}>
-          <Switch>
-            <Redirect exact from="/" to="/phan-quyen" />
-            { map(dsMenu, (item, index) => (
-              <Route key={index} path={item.path} component={item.component} />
-            ))}
-            <Route component={NotFound} />
-          </Switch>
+          <RenderRoute />
         </Suspense>
-      </LayoutMain>
+      </div>
     </BrowserRouter>
   );
 }

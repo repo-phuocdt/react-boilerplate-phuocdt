@@ -1,10 +1,10 @@
-import { LinkOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import classnames from 'classnames';
 import { dsMenu } from 'configs/config-menu';
-import { isEmpty, map } from 'lodash';
+import { isEmpty, map, isBoolean } from 'lodash';
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import { Auth } from 'helpers/Auth';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -16,11 +16,18 @@ function handleActive(location, path) {
   if (getLocation === path) {
     return true;
   }
+
   return false;
 }
 
 function renderMenu(data, location, pathParent) {
+  const isAuth = Auth().isAuthenticated;
   const result = map(data, (item) => {
+    const isPermisson = isBoolean(item.isPermisson) ? item.isPermisson : true;
+    const { isPrivate } = item;
+
+    if ((!isAuth && isPrivate) || !isPermisson) return;
+
     if (!isEmpty(item.children)) {
       return (
         <SubMenu key={pathParent ? `${pathParent}${item.path}` : item.path} icon={item.icon} title={item.label}>
@@ -67,11 +74,6 @@ function Sidebar() {
         defaultOpenKeys={openKeys}
       >
         { renderMenu(dsMenu, location) }
-        <Menu.Item key="link" icon={<LinkOutlined />}>
-          <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-            Ant Design
-          </a>
-        </Menu.Item>
       </Menu>
     </Sider>
   );
