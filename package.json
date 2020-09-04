@@ -37,6 +37,7 @@
     "babel-eslint": "^10.1.0",
     "eslint-config-phuocdt": "^1.0.6",
     "eslint-plugin-react-hooks": "^4.1.0",
+    "humps": "^2.0.1",
     "node-sass": "^4.14.1"
   }
 }

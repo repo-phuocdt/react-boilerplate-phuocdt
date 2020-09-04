@@ -2,7 +2,7 @@ import Forbidden from 'components/Forbidden';
 import LayoutMain from 'components/Layouts';
 import NotFound from 'components/NotFound';
 import { dsMenu } from 'configs/config-menu';
-import { Auth } from 'helpers/Auth';
+import { Auth } from 'Helpers/Auth';
 import { map, isBoolean } from 'lodash';
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
@@ -26,11 +26,23 @@ function PrivateRoute({ component: Component, layout: Layout, isPermisson, ...re
   );
 }
 
+function PublicRoute({ component: Component, layout: Layout, ...rest }) {
+
+  return (
+    <Route
+      {...rest}
+      render={(routerProps) => {
+        return <Layout> <Component {...routerProps} /> </Layout>;
+      }}
+    />
+  );
+}
+
 function RenderRoute() {
 
   return (
     <Switch>
-      {/* <Redirect exact from="/" to="/" /> */}
+      <Redirect exact from="/" to="/phan-quyen" />
 
       { map(dsMenu, (item, index) => {
         const isPermisson = isBoolean(item.isPermisson) ? item.isPermisson : true;
@@ -40,19 +52,30 @@ function RenderRoute() {
 
         if (!isPermisson) return;
 
-        if (isPrivate) {
-          return <PrivateRoute
-            key={index}
-            path={item.path}
-            component={Component}
-            layout={Layout}
-            isPermisson={isPermisson}
-          />;
+        if (!isPrivate) {
+          return (
+            <PublicRoute
+              key={index}
+              path={item.path}
+              component={Component}
+              layout={Layout}
+              exact={item.exact}
+            />
+          );
         }
 
-        return <Route key={index} path={item.path} render={(routerProps) => (
-          <Layout>{ <Component {...routerProps} /> }</Layout>
-        )} />;
+        if (isPrivate) {
+          return (
+            <PrivateRoute
+              key={index}
+              path={item.path}
+              component={Component}
+              layout={Layout}
+              isPermisson={isPermisson}
+              exact={item.exact}
+            />
+          );
+        }
       })}
 
       <Route component={NotFound} />

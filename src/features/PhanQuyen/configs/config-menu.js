@@ -10,21 +10,21 @@ export const dsMenu = [
     path: '/danh-sach',
     icon: <SettingOutlined />,
     label: 'Phân quyền',
-    component: lazy(() => import('custom-fields/UploadField')),
+    component: lazy(() => import('custom_fields/UploadField')),
     children: []
   },
   {
     path: '/them-moi',
     icon: <AppstoreOutlined />,
     label: 'Danh mục',
-    component: lazy(() => import('custom-fields/SelectField')),
+    component: lazy(() => import('custom_fields/SelectField')),
     children: []
   },
   {
     path: '/chinh-sua',
     icon: <MailOutlined />,
     label: 'Gửi mail',
-    component: lazy(() => import('custom-fields/CheckboxField')),
+    component: lazy(() => import('custom_fields/CheckboxField')),
     children: []
   },
   {

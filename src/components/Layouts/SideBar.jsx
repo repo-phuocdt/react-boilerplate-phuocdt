@@ -4,7 +4,7 @@ import { dsMenu } from 'configs/config-menu';
 import { isEmpty, map, isBoolean } from 'lodash';
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Auth } from 'helpers/Auth';
+import { Auth } from 'Helpers/Auth';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
