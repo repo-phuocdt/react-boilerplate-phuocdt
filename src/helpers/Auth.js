@@ -1,5 +1,6 @@
 export const Auth = () => {
-  const isAuthenticated = true;
+
+  const isAuthenticated = false;
 
   return { isAuthenticated };
 };
