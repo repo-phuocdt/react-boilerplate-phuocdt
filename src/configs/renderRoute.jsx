@@ -2,7 +2,7 @@ import Forbidden from 'components/Forbidden';
 import LayoutMain from 'components/Layouts';
 import NotFound from 'components/NotFound';
 import { dsMenu } from 'configs/config-menu';
-import { Auth } from 'Helpers/Auth';
+import { Auth } from 'helpers/Auth';
 import { map, isBoolean } from 'lodash';
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
