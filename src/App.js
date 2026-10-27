@@ -1,5 +1,5 @@
 import Loading from 'components/Loading';
-import RenderRoute from 'configs/RenderRoute';
+import RenderRoute from 'configs/renderRoute';
 import React, { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './app.scss';

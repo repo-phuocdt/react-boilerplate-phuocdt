@@ -3,10 +3,10 @@ import {
   SettingOutlined
 } from '@ant-design/icons';
 import React, { lazy } from 'react';
-import { dsMenu as dsMenuPhanQuyen } from 'Features/PhanQuyen/configs/config-menu';
-import { isValidPermission } from 'Helpers/Permission';
+import { dsMenu as dsMenuPhanQuyen } from 'features/PhanQuyen/configs/config-menu';
+import { isValidPermission } from 'helpers/Permission';
 import { permission } from 'constants/mock-data-permission';
-import LayoutLogin from 'Features/Login/components/layouts';
+import LayoutLogin from 'features/Login/components/layouts';
 
 const routePublic = [
   {
@@ -15,7 +15,7 @@ const routePublic = [
     label: 'Đăng nhập',
     layout: LayoutLogin,
     exact: true,
-    component: lazy(() => import('Features/Login')),
+    component: lazy(() => import('features/Login')),
     children: []
   }
 ];
@@ -25,7 +25,7 @@ const routePrivate = [
     path: '/phan-quyen',
     icon: <SettingOutlined />,
     label: 'Phân quyền',
-    component: lazy(() => import('Features/PhanQuyen')),
+    component: lazy(() => import('features/PhanQuyen')),
     isPrivate: true,
     isPermisson: isValidPermission({
       user_Permission: permission,
